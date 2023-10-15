@@ -3,12 +3,12 @@ import FoodItem from "../../../components/food/FoodItem";
 
 const FoodMenu = () => {
   return (
-    <div>
+    <section>
       <FilterFoodBar />
       <FoodItem />
       <FoodItem />
       <FoodItem />
-    </div>
+    </section>
   );
 };
 

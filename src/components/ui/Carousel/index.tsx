@@ -1,7 +1,7 @@
 type Props = {};
 
 const Carousel = (props: Props) => {
-  return <div>Carousel</div>;
+  return <section>Carousel</section>;
 };
 
 export default Carousel;

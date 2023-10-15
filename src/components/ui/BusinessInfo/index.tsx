@@ -1,7 +1,7 @@
 import React from "react";
 
 const BusinessInfo = () => {
-  return <div>BusinessInfo</div>;
+  return <section>BusinessInfo</section>;
 };
 
 export default BusinessInfo;
