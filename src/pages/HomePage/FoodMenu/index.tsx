@@ -1,7 +1,7 @@
 import FilterFoodBar from "../../../components/food/FilterFoodBar";
 import FoodItem from "../../../components/food/FoodItem";
 
-const FoodList = () => {
+const FoodMenu = () => {
   return (
     <div>
       <FilterFoodBar />
@@ -12,4 +12,4 @@ const FoodList = () => {
   );
 };
 
-export default FoodList;
+export default FoodMenu;
