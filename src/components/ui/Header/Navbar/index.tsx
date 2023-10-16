@@ -103,7 +103,7 @@ const ButtonCart = () => {
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 w-full">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white">
       <div className="container mx-auto flex items-center justify-between py-2">
         <Logo />
         <NavigationListing />

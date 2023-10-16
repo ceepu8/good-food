@@ -9,7 +9,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <>
       <Header />
-      <main className="pt-[75px]">{children}</main>
+      <main>{children}</main>
       <Footer />
     </>
   );
