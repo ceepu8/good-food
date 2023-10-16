@@ -1,5 +1,6 @@
 import { FaReceipt } from "react-icons/fa";
 import Image from "../../base/Image";
+import { Button } from "../../base/Button";
 
 type Props = {};
 
@@ -19,13 +20,10 @@ const CarouselContent = () => {
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard.
       </p>
-      <button
-        type="button"
-        className="flex-center w-fit group gap-x-2 text-lg bg-white h-10 px-5 rounded-full uppercase text-gray-800 font-medium hover:text-yellow-500 transition-all"
-      >
+      <Button variant="ghost" className="uppercase">
         <FaReceipt />
         Order Now
-      </button>
+      </Button>
     </div>
   );
 };

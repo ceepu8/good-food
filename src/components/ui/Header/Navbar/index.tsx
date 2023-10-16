@@ -1,12 +1,12 @@
 import { IconType } from "react-icons";
 import { Routes } from "../../../../constants";
-import Button from "../../../base/Button";
-import CartModal from "../../../modal/CartModal";
 import Logo from "../../Logo";
 import { AiFillPhone, AiOutlineShoppingCart } from "react-icons/ai";
 import { FaHamburger, FaPizzaSlice, FaUserAlt } from "react-icons/fa";
 import { RiStackFill } from "react-icons/ri";
 import Link from "../../../base/Link";
+import { memo } from "react";
+import { Button } from "../../../base/Button";
 
 type NavigationItemProps = {
   item: {
@@ -16,7 +16,7 @@ type NavigationItemProps = {
   };
 };
 
-const NavigationItem = ({ item }: NavigationItemProps) => {
+const NavigationItem = memo(({ item }: NavigationItemProps) => {
   const { label, icon: Icon, route } = item || {};
   return (
     <li className="hover:text-yellow-500 transition-colors">
@@ -28,7 +28,7 @@ const NavigationItem = ({ item }: NavigationItemProps) => {
       </Link>
     </li>
   );
-};
+});
 
 const NavigationListing = () => {
   const NAVIGATION_LIST = [
@@ -88,15 +88,10 @@ const CartNumber = () => {
 const ButtonCart = () => {
   return (
     <div>
-      {/* <Button /> */}
-      <button
-        type="button"
-        className="flex-center group gap-x-2 bg-yellow-500 border border-yellow-500 h-10 px-5 rounded-full uppercase text-white font-medium hover:bg-white hover:text-yellow-500 transition-all"
-      >
+      <Button variant="primary" className="uppercase group">
         <CartNumber />
         Shopping cart
-      </button>
-      {/* <CartModal /> */}
+      </Button>
     </div>
   );
 };
