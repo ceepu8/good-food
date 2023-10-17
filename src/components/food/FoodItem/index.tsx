@@ -1,3 +1,4 @@
+import { useCart } from "../../../providers/CartProvider";
 import { formatAsDollar } from "../../../utils";
 import { Button } from "../../base/Button";
 import Image from "../../base/Image";
@@ -15,6 +16,19 @@ type FoodItemProps = {
 
 const FoodItem = ({ item }: FoodItemProps) => {
   const { label, image, rating, price } = item || {};
+  const { state, dispatch } = useCart();
+
+  const addToCart = (item: any) => {
+    dispatch({ type: "ADD_TO_CART", payload: item });
+  };
+
+  const removeFromCart = (item: any) => {
+    dispatch({ type: "REMOVE_FROM_CART", payload: item });
+  };
+
+  const clearCart = () => {
+    dispatch({ type: "CLEAR_CART" });
+  };
   return (
     <Link to="/" disabled>
       <div
@@ -49,8 +63,9 @@ const FoodItem = ({ item }: FoodItemProps) => {
               variant="outline"
               size="sm"
               className="text-sm font-light rounded-md"
+              onClick={() => addToCart(item)}
             >
-              Order Now
+              Add
             </Button>
           </div>
         </div>

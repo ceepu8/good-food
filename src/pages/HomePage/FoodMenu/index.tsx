@@ -1,6 +1,7 @@
 import Heading from "../../../components/base/Heading";
 import FilterFoodBar from "../../../components/food/FilterFoodBar";
 import FoodItem from "../../../components/food/FoodItem";
+import { useCart } from "../../../providers/CartProvider";
 
 const FoodMenuHeader = () => {
   return (
