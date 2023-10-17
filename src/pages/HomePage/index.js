@@ -1,15 +1,15 @@
 import BusinessInfo from "../../components/ui/BusinessInfo";
 import Carousel from "../../components/ui/Carousel";
-import MainLayout from "../../layout/MainLayout";
+import CartProvider from "../../providers/CartProvider";
 import FoodMenu from "./FoodMenu";
 
 export default function HomePage() {
   return (
-    <MainLayout>
+    <CartProvider>
       <Carousel />
       <BusinessInfo />
       <FoodMenu />
-    </MainLayout>
+    </CartProvider>
   );
 }
 

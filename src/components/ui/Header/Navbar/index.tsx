@@ -64,7 +64,7 @@ const NavigationListing = () => {
     },
   ];
   return (
-    <ul className="flex items-center justify-end flex-1 space-x-8">
+    <ul className="hidden lg:flex items-center justify-end flex-1 space-x-8">
       {NAVIGATION_LIST.map((item) => (
         <NavigationItem item={item} />
       ))}
@@ -98,7 +98,10 @@ const ButtonCart = () => {
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white">
+    <nav
+      style={{ boxShadow: "4px -86px 123px rgb(0 0 0 / 7" }}
+      className="fixed top-0 left-0 w-full z-50 bg-white"
+    >
       <div className="container mx-auto flex items-center justify-between py-2">
         <Logo />
         <NavigationListing />
