@@ -3,7 +3,7 @@ import { formatAsDollar } from "../../../utils";
 import { Button } from "../../base/Button";
 import Image from "../../base/Image";
 import Link from "../../base/Link";
-import { AiFillStar } from "react-icons/ai";
+import RatingStar from "../../ui/RatingStar";
 
 type FoodItemProps = {
   item: {
@@ -33,13 +33,13 @@ const FoodItem = ({ item }: FoodItemProps) => {
     <Link to="/" disabled>
       <div
         style={{ boxShadow: "0 1px 22px 0 rgb(0 0 0 / 9%)" }}
-        className="bg-white pb-4 flex flex-col gap-y-4 rounded-lg cursor-pointer group"
+        className="bg-white pb-4 flex flex-col gap-y-4 xs:rounded-lg cursor-pointer group"
       >
         <figure className="aspect-[1.5/1] overflow-hidden">
           <Image
             src={image}
             alt="gallery"
-            className="rounded-t-lg group-hover:scale-110 transition-[transform] object-cover w-full h-full"
+            className="xs:rounded-t-lg group-hover:scale-110 transition-[transform] object-cover w-full h-full"
           />
         </figure>
 
@@ -51,12 +51,9 @@ const FoodItem = ({ item }: FoodItemProps) => {
             </h4>
           </div>
           <div className="flex items-center mt-2 cm-order justify-between px-2">
-            <div className="flex text-yellow-500 text-lg gap-x-1">
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
+            <div className="flex items-center space-x-2">
+              <RatingStar number={rating} />
+              <span className="text-sm">({rating})</span>
             </div>
 
             <Button

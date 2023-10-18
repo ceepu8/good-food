@@ -1,13 +1,17 @@
 import Heading from "../../../components/base/Heading";
 import FilterFoodBar from "../../../components/food/FilterFoodBar";
 import FoodItem from "../../../components/food/FoodItem";
-import { useCart } from "../../../providers/CartProvider";
+import FOOD_LIST from "../../../services/food-list.json";
 
 const FoodMenuHeader = () => {
   return (
     <div className="text-center font-montserrat">
-      <Heading bold={false} className="text-[32px]">
-        Just Choose From <b>THE BEST</b>
+      <Heading
+        bold={false}
+        truncation={2}
+        className="text-[24px] md:text-[32px]"
+      >
+        Just Choose From <b className="block xs:inline">THE BEST</b>
       </Heading>
       <p className="text-gray-400 text-[17px]">Menu</p>
     </div>
@@ -15,47 +19,9 @@ const FoodMenuHeader = () => {
 };
 
 const FoodMenuListing = () => {
-  const FOOD_ITEMS = [
-    {
-      label: "Maxican Pizza",
-      price: 29,
-      image: "./images/meal-1.jpeg",
-      rating: 4.5,
-    },
-    {
-      label: "Maxican Pizza Test Better",
-      price: 29,
-      image: "./images/meal-2.jpeg",
-      rating: 4.5,
-    },
-    {
-      label: "Maxican Pizza",
-      price: 29,
-      image: "./images/meal-3.jpeg",
-      rating: 4.5,
-    },
-    {
-      label: "Maxican Pizza",
-      price: 29,
-      image: "./images/meal-4.jpeg",
-      rating: 4.5,
-    },
-    {
-      label: "Maxican Pizza",
-      price: 29,
-      image: "./images/meal-5.jpeg",
-      rating: 4.5,
-    },
-    {
-      label: "Maxican Pizza",
-      price: 29,
-      image: "./images/meal-6.jpeg",
-      rating: 4.5,
-    },
-  ];
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 rounded-lg">
-      {FOOD_ITEMS.map((item) => {
+      {FOOD_LIST.map((item) => {
         return <FoodItem key={item.label} item={item} />;
       })}
     </div>

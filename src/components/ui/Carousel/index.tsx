@@ -51,7 +51,7 @@ const Carousel = (props: Props) => {
       style={{ backgroundImage: "url('./images/banner-background.png')" }}
       className="pt-[75px] h-[584px] sm:h-[854px] md:h-[550px] lg:h-[720px] md:pt-0 md:bg-center sm:bg-cover bg-no-repeat"
     >
-      <div className="flex-col md:flex-row flex justify-center md:justify-start items-center h-full lg:px-16">
+      <div className="flex-col md:flex-row flex justify-center md:justify-start lg:gap-x-32 items-center h-full lg:px-16">
         <CarouselModel />
         <CarouselContent />
       </div>
