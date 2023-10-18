@@ -1,12 +1,13 @@
+import { memo } from "react";
 import { IconType } from "react-icons";
-import { Routes } from "../../../../constants";
-import Logo from "../../Logo";
-import { AiFillPhone, AiOutlineShoppingCart } from "react-icons/ai";
+import { AiFillPhone, AiOutlineMenu } from "react-icons/ai";
 import { FaHamburger, FaPizzaSlice, FaUserAlt } from "react-icons/fa";
 import { RiStackFill } from "react-icons/ri";
-import Link from "../../../base/Link";
-import { memo } from "react";
+import { Routes } from "../../../../constants";
 import { Button } from "../../../base/Button";
+import Link from "../../../base/Link";
+import Logo from "../../Logo";
+import CartModalToggle from "./CartModalToggle";
 
 type NavigationItemProps = {
   item: {
@@ -64,35 +65,23 @@ const NavigationListing = () => {
     },
   ];
   return (
-    <ul className="hidden lg:flex items-center justify-end flex-1 space-x-8">
+    <ul className="hidden lg:flex items-center justify-end flex-1 space-x-6 xl:space-x-8">
       {NAVIGATION_LIST.map((item) => (
         <NavigationItem item={item} />
       ))}
-
-      <ButtonCart />
     </ul>
   );
 };
 
-const CartNumber = () => {
+const MobileNavbarToggle = () => {
   return (
-    <div className="relative">
-      <AiOutlineShoppingCart size={24} />
-      <span className="absolute -top-1 -right-1.5 text-[10px] leading-4 w-4 h-4 rounded-2xl bg-white group-hover:text-white group-hover:bg-yellow-500 text-yellow-500">
-        1
-      </span>
-    </div>
-  );
-};
-
-const ButtonCart = () => {
-  return (
-    <div>
-      <Button variant="primary" className="uppercase group">
-        <CartNumber />
-        Shopping cart
-      </Button>
-    </div>
+    <Button
+      variant="ghost"
+      size="icon"
+      className="lg:hidden rounded-md w-12 h-12"
+    >
+      <AiOutlineMenu size={24} />
+    </Button>
   );
 };
 
@@ -104,7 +93,11 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between py-2">
         <Logo />
-        <NavigationListing />
+        <div className="flex items-center space-x-2 lg:space-x-4">
+          <NavigationListing />
+          <CartModalToggle />
+          <MobileNavbarToggle />
+        </div>
       </div>
     </nav>
   );
