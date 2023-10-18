@@ -40,10 +40,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     return (
       <button
-        className={cn(
-          buttonVariants({ variant, size, className }),
-          fullWidth ? "w-full" : "w-fit"
-        )}
+        className={cn(buttonVariants({ variant, size, className }), {
+          "w-full": fullWidth,
+        })}
         ref={ref}
         {...props}
       >
