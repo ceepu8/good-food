@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { IMAGES } from "../../../constants";
 import { useCart } from "../../../providers/CartProvider";
 import { formatAsDollar } from "../../../utils";
@@ -8,14 +7,7 @@ import CartItem from "../CartItem";
 
 const CartModalFooter = () => {
   const { state } = useCart();
-  const { cartItems } = state;
-
-  const totalPrice = useMemo(() => {
-    return cartItems.reduce(
-      (initial, item) => (initial += item.price * item.quantity),
-      0
-    );
-  }, [cartItems]);
+  const {  totalPrice } = state;
 
   return (
     <div className="flex justify-between text-xl sm:text-2xl font-semibold pt-8">
@@ -57,14 +49,20 @@ type CartModalProps = {
 };
 
 const CartModal = ({ show, handleClose }: CartModalProps) => {
-  const { state } = useCart();
+  const { state, dispatch } = useCart();
   const { cartItems } = state;
+
+  const onOrder = () => {
+    console.log(state);
+    dispatch({ type: "CLEAR_CART"});
+    
+  }
 
   return (
     <Modal
       show={show}
       handleClose={handleClose}
-      onOk={() => {}}
+      onOk={onOrder}
       disabled={!cartItems?.length}
     >
       <CartModalContent />

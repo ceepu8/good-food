@@ -51,3 +51,14 @@ export const decreaseCartItem = (
     return newCart;
   }
 };
+
+export const calcTotalPrice = (cartItems: CartItemInterface[]) => {
+  return cartItems.reduce(
+    (initial, item) => (initial += item.price * item.quantity),
+    0
+  );
+};
+
+export const calcTotalQuantity = (cartItems: CartItemInterface[]) => {
+  return cartItems.reduce((initial, item) => (initial += item.quantity), 0);
+};

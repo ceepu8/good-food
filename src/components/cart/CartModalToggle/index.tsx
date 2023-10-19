@@ -1,12 +1,15 @@
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useCart } from "../../../providers/CartProvider";
 import { cn } from "../../../utils";
 import { Button } from "../../base/Button";
 import CartModal from "../CartModal";
 
-const CartNumber = ({ totalQuantity }: { totalQuantity: number }) => {
+const CartNumber = () => {
+  const { state } = useCart();
+  const { totalQuantity } = state;
+
   return (
     <div className="relative">
       <AiOutlineShoppingCart size={24} />
@@ -22,11 +25,7 @@ const CartModalToggle = () => {
   const [toggled, setToggled] = useState(false);
   const { state } = useCart();
 
-  const { cartItems } = state;
 
-  const totalQuantity = useMemo(() => {
-    return cartItems.reduce((initial, item) => (initial += item.quantity), 0);
-  }, [cartItems]);
 
   useEffect(() => {
     setToggled(true);
@@ -47,7 +46,7 @@ const CartModalToggle = () => {
           "animation-heartbeat": toggled,
         })}
       >
-        <CartNumber totalQuantity={totalQuantity} />
+        <CartNumber />
         <span className="hidden sm:block">Shopping Cart</span>
       </Button>
 

@@ -5,11 +5,18 @@ import {
   ReactNode,
   Dispatch,
 } from "react";
-import { addToCart, decreaseCartItem } from "../../utils/cart";
+import {
+  addToCart,
+  calcTotalPrice,
+  calcTotalQuantity,
+  decreaseCartItem,
+} from "../../utils/cart";
 import { CartItemInterface } from "../../types";
 
 type CartState = {
   cartItems: CartItemInterface[];
+  totalQuantity: number;
+  totalPrice: number;
 };
 
 type CartAction =
@@ -26,11 +33,13 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
     case "ADD_TO_CART":
       const addedCart = addToCart(state.cartItems, action.payload);
-
       return {
         ...state,
         cartItems: addedCart,
+        totalPrice: calcTotalPrice(addedCart),
+        totalQuantity: calcTotalQuantity(addedCart),
       };
+
     case "DECREASE_ITEM_QUANTITY":
       const { cartItems } = state;
       const decreasedCart = decreaseCartItem(cartItems, action.payload);
@@ -38,19 +47,29 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       return {
         ...state,
         cartItems: decreasedCart,
+        totalPrice: calcTotalPrice(decreasedCart),
+        totalQuantity: calcTotalQuantity(decreasedCart),
       };
+
     case "REMOVE_FROM_CART":
+      const filteredCart = state.cartItems.filter(
+        (item) => item.id !== action.payload.id
+      );
       return {
         ...state,
-        cartItems: state.cartItems.filter(
-          (item) => item.id !== action.payload.id
-        ),
+        cartItems: filteredCart,
+        totalPrice: calcTotalPrice(filteredCart),
+        totalQuantity: calcTotalQuantity(filteredCart),
       };
+
     case "CLEAR_CART":
       return {
         ...state,
         cartItems: [],
+        totalPrice: 0,
+        totalQuantity: 0,
       };
+
     default:
       return state;
   }
@@ -69,7 +88,11 @@ type CartProviderProps = {
 };
 
 export const CartProvider = ({ children }: CartProviderProps) => {
-  const [state, dispatch] = useReducer(cartReducer, { cartItems: [] });
+  const [state, dispatch] = useReducer(cartReducer, {
+    cartItems: [],
+    totalPrice: 0,
+    totalQuantity: 0,
+  });
 
   return (
     <CartContext.Provider value={{ state, dispatch }}>
