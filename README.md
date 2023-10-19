@@ -1,2 +1,1 @@
-getter + setter
-chỉ gửi phần logic thay đổi cart
+Reference Layout: https://demo.templatemonster.com/demo/226425.html?_gl=1*170u5f6*_ga*ODgzNzkwODMyLjE2OTczNTk0NzI.*_ga_FTPYEGT5LY*MTY5NzM1OTQ3MS4xLjEuMTY5NzM1OTcwNC40OC4wLjA.&_ga=2.192975597.1773641741.1697359472-883790832.1697359472&_gac=1.49141076.1697359472.Cj0KCQjwm66pBhDQARIsALIR2zAGJozY0SsVKHNz38zXncMn3KBnvBVuxMAzG_8zQRtkBwAY0IBWhb8aAmL-EALw_wcB
