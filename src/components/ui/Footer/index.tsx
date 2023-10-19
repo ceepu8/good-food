@@ -1,5 +1,4 @@
 import { AiFillFacebook, AiFillTwitterSquare } from "react-icons/ai";
-import { IMAGES } from "../../../constants";
 import Heading from "../../base/Heading";
 import Image from "../../base/Image";
 import LineBreak from "../../base/LineBreak";
@@ -7,6 +6,7 @@ import Link from "../../base/Link";
 import { FaInstagramSquare } from "react-icons/fa";
 import { getCurrentYear } from "../../../utils/dates";
 import { IconType } from "react-icons";
+import { IMAGES } from "../../../constants";
 
 const NavigationCol = ({ data, title }: { data: string[]; title: string }) => {
   const renderItem = (item: string) => {
@@ -111,7 +111,7 @@ const Footer = () => {
   const SUPPORT_LIST = ["Privacy", "Terms", "Policy"];
 
   return (
-    <footer className="bg-black text-white pt-[50px]">
+    <footer className="bg-black text-white pt-[50px] sm:px-0 px-4">
       <div className="container mx-auto">
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
           <FooterIntro />

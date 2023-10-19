@@ -14,6 +14,11 @@ body,
   height: 100%;
 }
 
+body {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
 .animation-heartbeat {
   animation: heartbeat ease-out 500ms 1;
 }

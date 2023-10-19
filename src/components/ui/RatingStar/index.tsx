@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { BsStarFill, BsStarHalf } from "react-icons/bs";
 
 type RatingStarProps = {
