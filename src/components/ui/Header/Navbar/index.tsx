@@ -67,7 +67,7 @@ const NavigationListing = () => {
   return (
     <ul className="hidden lg:flex items-center justify-end flex-1 space-x-6 xl:space-x-8">
       {NAVIGATION_LIST.map((item) => (
-        <NavigationItem item={item} />
+        <NavigationItem key={item.label} item={item} />
       ))}
     </ul>
   );

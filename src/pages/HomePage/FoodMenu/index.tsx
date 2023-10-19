@@ -22,7 +22,7 @@ const FoodMenuListing = () => {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 rounded-lg">
       {FOOD_LIST.map((item) => {
-        return <FoodItem key={item.label} item={item} />;
+        return <FoodItem key={item.id} item={item} />;
       })}
     </div>
   );

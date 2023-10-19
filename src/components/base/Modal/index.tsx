@@ -9,13 +9,20 @@ type ModalProps = {
   show: Boolean;
   children: React.ReactNode;
   className?: string;
+  onOk?: () => void;
 };
 
 export const ModalTrigger = ({ children }: { children: React.ReactNode }) => {
   return <div>{children}</div>;
 };
 
-const Modal = ({ handleClose, show, children, className }: ModalProps) => {
+const Modal = ({
+  handleClose,
+  show,
+  children,
+  className,
+  onOk,
+}: ModalProps) => {
   const ref = useRef(null);
   useOnClickOutside<HTMLDivElement>(ref, handleClose);
   useLockBodyScroll(show);
@@ -37,9 +44,14 @@ const Modal = ({ handleClose, show, children, className }: ModalProps) => {
       <section ref={ref} className={rootClassName}>
         <div className="flex-1">{children}</div>
 
-        <Button onClick={handleClose} className="ml-auto">
-          Close
-        </Button>
+        <div className="flex space-x-4">
+          <Button variant="ghost" onClick={handleClose} className="ml-auto">
+            Close
+          </Button>
+          <Button onClick={onOk} className="ml-auto">
+            Ok
+          </Button>
+        </div>
       </section>
     </div>
   );

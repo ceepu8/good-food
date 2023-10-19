@@ -1,6 +1,7 @@
 import { FaReceipt } from "react-icons/fa";
 import Image from "../../base/Image";
 import { Button } from "../../base/Button";
+import { IMAGES } from "../../../constants";
 
 type Props = {};
 
@@ -37,7 +38,7 @@ const CarouselModel = () => {
     <div className="w-[80%] sm:w-[59%] md:w-[37%] max-w-fit overflow-hidden">
       <Image
         style={{ animationDuration: "30000ms" }}
-        src="./images/model-3.png"
+        src={IMAGES.BANNER_MODEL}
         alt="model"
         className="animate-spin w-full h-full block object-contain"
       />
@@ -48,7 +49,7 @@ const CarouselModel = () => {
 const Carousel = (props: Props) => {
   return (
     <section
-      style={{ backgroundImage: "url('./images/banner-background.png')" }}
+      style={{ backgroundImage: `url(${IMAGES.BANNER})` }}
       className="pt-[75px] h-[584px] sm:h-[854px] md:h-[550px] lg:h-[720px] md:pt-0 md:bg-center sm:bg-cover bg-no-repeat"
     >
       <div className="flex-col md:flex-row flex justify-center md:justify-start lg:gap-x-32 items-center h-full lg:px-16">

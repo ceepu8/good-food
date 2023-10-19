@@ -16,19 +16,12 @@ type FoodItemProps = {
 
 const FoodItem = ({ item }: FoodItemProps) => {
   const { label, image, rating, price } = item || {};
-  const { state, dispatch } = useCart();
+  const { dispatch } = useCart();
 
   const addToCart = (item: any) => {
     dispatch({ type: "ADD_TO_CART", payload: item });
   };
 
-  const removeFromCart = (item: any) => {
-    dispatch({ type: "REMOVE_FROM_CART", payload: item });
-  };
-
-  const clearCart = () => {
-    dispatch({ type: "CLEAR_CART" });
-  };
   return (
     <Link to="/" disabled>
       <div

@@ -7,7 +7,6 @@ type RatingStarProps = {
 
 const RatingStar = memo(({ number: _number }: RatingStarProps) => {
   const number = Math.min(5, Math.max(0, _number));
-  console.log(number);
 
   const integerPart = Math.floor(number);
 

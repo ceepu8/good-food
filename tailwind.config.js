@@ -15,6 +15,9 @@ module.exports = {
       'lg': '1024px',
       'xl': '1280px',
     },
+    animation: {
+      heartbeat: 'heartbeat ease-out 500ms 1'
+    }
   },
   plugins: [],
 };

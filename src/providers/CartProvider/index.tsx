@@ -1,41 +1,50 @@
-import React, {
+import {
   createContext,
   useContext,
   useReducer,
   ReactNode,
   Dispatch,
 } from "react";
+import { addToCart, decreaseCartItem } from "../../utils/cart";
 
-// Định nghĩa loại dữ liệu cho sản phẩm trong giỏ hàng
 type CartItem = {
   id: number;
-  name: string;
+  label: string;
   price: number;
+  rating: number;
+  quantity: number;
 };
 
-// Định nghĩa trạng thái cho giỏ hàng
 type CartState = {
   cartItems: CartItem[];
 };
 
-// Các hành động cho giỏ hàng
 type CartAction =
   | { type: "ADD_TO_CART"; payload: CartItem }
   | { type: "REMOVE_FROM_CART"; payload: CartItem }
+  | { type: "DECREASE_ITEM_QUANTITY"; payload: CartItem }
   | { type: "CLEAR_CART" };
 
-// Khởi tạo CartContext
 const CartContext = createContext<
   { state: CartState; dispatch: Dispatch<CartAction> } | undefined
 >(undefined);
 
-// Reducer để quản lý trạng thái giỏ hàng
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
     case "ADD_TO_CART":
+      const addedCart = addToCart(state.cartItems, action.payload);
+
       return {
         ...state,
-        cartItems: [...state.cartItems, action.payload],
+        cartItems: addedCart,
+      };
+    case "DECREASE_ITEM_QUANTITY":
+      const { cartItems } = state;
+      const decreasedCart = decreaseCartItem(cartItems, action.payload);
+
+      return {
+        ...state,
+        cartItems: decreasedCart,
       };
     case "REMOVE_FROM_CART":
       return {
@@ -54,7 +63,6 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
   }
 };
 
-// Custom hook để sử dụng CartContext
 export const useCart = () => {
   const context = useContext(CartContext);
   if (context === undefined) {
@@ -69,7 +77,6 @@ type CartProviderProps = {
 
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [state, dispatch] = useReducer(cartReducer, { cartItems: [] });
-  console.log(cartReducer);
 
   return (
     <CartContext.Provider value={{ state, dispatch }}>
