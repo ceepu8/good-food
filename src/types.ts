@@ -1,14 +1,11 @@
-export interface CartItemInterface {
-  id: string;
-  label: string;
-  price: number;
-  rating: number;
-  quantity: number;
-}
-
 export interface FoodItemInterface {
+  id: string;
   label: string;
   price: number;
   image: string;
   rating: number;
+}
+
+export interface CartItemInterface extends FoodItemInterface {
+  quantity: number;
 }

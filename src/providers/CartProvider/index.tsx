@@ -11,7 +11,7 @@ import {
   calcTotalQuantity,
   decreaseCartItem,
 } from "../../utils/cart";
-import { CartItemInterface } from "../../types";
+import { CartItemInterface, FoodItemInterface } from "../../types";
 
 type CartState = {
   cartItems: CartItemInterface[];
@@ -20,9 +20,15 @@ type CartState = {
 };
 
 type CartAction =
-  | { type: "ADD_TO_CART"; payload: CartItemInterface }
+  | {
+      type: "ADD_TO_CART";
+      payload: { item: FoodItemInterface; quantity?: number };
+    }
+  | {
+      type: "DECREASE_ITEM_QUANTITY";
+      payload: { item: FoodItemInterface; quantity?: number };
+    }
   | { type: "REMOVE_FROM_CART"; payload: CartItemInterface }
-  | { type: "DECREASE_ITEM_QUANTITY"; payload: CartItemInterface }
   | { type: "CLEAR_CART" };
 
 const CartContext = createContext<
@@ -32,7 +38,12 @@ const CartContext = createContext<
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
     case "ADD_TO_CART":
-      const addedCart = addToCart(state.cartItems, action.payload);
+      const addedCart = addToCart(
+        state.cartItems,
+        action.payload?.item,
+        action.payload?.quantity || 1
+      );
+
       return {
         ...state,
         cartItems: addedCart,
@@ -41,8 +52,11 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       };
 
     case "DECREASE_ITEM_QUANTITY":
-      const { cartItems } = state;
-      const decreasedCart = decreaseCartItem(cartItems, action.payload);
+      const decreasedCart = decreaseCartItem(
+        state.cartItems,
+        action.payload?.item,
+        action.payload?.quantity || 1
+      );
 
       return {
         ...state,

@@ -1,4 +1,4 @@
-import { CartItemInterface } from "../types";
+import { CartItemInterface, FoodItemInterface } from "../types";
 
 const findCartItem = (cartItems: CartItemInterface[], id: string) =>
   cartItems.find((item) => item.id === id);
@@ -11,7 +11,8 @@ const updateCartItemQuantity = (
 
 export const addToCart = (
   cartItems: CartItemInterface[],
-  newItem: CartItemInterface
+  newItem: FoodItemInterface,
+  quantity: number
 ) => {
   const foundItem = findCartItem(cartItems, newItem.id);
 
@@ -19,35 +20,36 @@ export const addToCart = (
     const updatedCart = updateCartItemQuantity(
       cartItems,
       newItem.id,
-      foundItem.quantity + 1
+      foundItem.quantity + quantity
     );
     return updatedCart;
   } else {
-    const newCart = [...cartItems, { ...newItem, quantity: 1 }];
+    const newCart = [...cartItems, { ...newItem, quantity }];
     return newCart;
   }
 };
 
 export const decreaseCartItem = (
   cartItems: CartItemInterface[],
-  cartItem: CartItemInterface
+  item: FoodItemInterface,
+  quantity: number
 ) => {
-  const foundItem = findCartItem(cartItems, cartItem.id);
+  const foundItem = findCartItem(cartItems, item.id);
 
   if (foundItem) {
     if (foundItem.quantity === 1) {
-      const updatedCart = cartItems.filter((item) => item.id !== cartItem.id);
+      const updatedCart = cartItems.filter((each) => each.id !== item.id);
       return updatedCart;
     } else {
       const updatedCart = updateCartItemQuantity(
         cartItems,
-        cartItem.id,
-        foundItem.quantity - 1
+        item.id,
+        foundItem.quantity - quantity
       );
       return updatedCart;
     }
   } else {
-    const newCart = [...cartItems, { ...cartItem, quantity: 1 }];
+    const newCart = [...cartItems, { ...item, quantity: quantity }];
     return newCart;
   }
 };

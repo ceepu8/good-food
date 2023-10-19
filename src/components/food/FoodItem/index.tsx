@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useCart } from "../../../providers/CartProvider";
 import { FoodItemInterface } from "../../../types";
 import { formatAsDollar } from "../../../utils";
@@ -10,13 +11,59 @@ type FoodItemProps = {
   item: FoodItemInterface;
 };
 
+const AddFoodItemForm = ({ item }: { item: FoodItemInterface }) => {
+  const { dispatch } = useCart();
+  const [value, setValue] = useState(1);
+
+  const addToCart = (item: FoodItemInterface, quantity: number) => {
+    dispatch({ type: "ADD_TO_CART", payload: { item, quantity } });
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    let val = event.target.value;
+    if (!val) setValue(1);
+    const newValue = parseInt(val, 10);
+    if (!isNaN(newValue)) {
+      setValue(() => newValue);
+    }
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    addToCart(item, value);
+  };
+
+  return (
+    <form className="flex flex-col space-y-2" onSubmit={handleSubmit}>
+      <div className="flex space-x-2 items-center w-full">
+        <label htmlFor="amount" className="text-xs font-semibold">
+          Amount
+        </label>
+        <input
+          id="amount"
+          value={value}
+          onChange={handleChange}
+          type="number"
+          min={1}
+          max={5}
+          className="w-10 border-[1px] border-gray-500 rounded-md focus-visible:outline-yellow-500 pl-1"
+        />
+      </div>
+
+      <Button
+        type="submit"
+        variant="secondary"
+        size="sm"
+        className="text-sm font-light rounded-md"
+      >
+        Add
+      </Button>
+    </form>
+  );
+};
+
 const FoodItem = ({ item }: FoodItemProps) => {
   const { label, image, rating, price } = item || {};
-  const { dispatch } = useCart();
-
-  const addToCart = (item: any) => {
-    dispatch({ type: "ADD_TO_CART", payload: item });
-  };
 
   return (
     <Link to="/" disabled>
@@ -45,14 +92,7 @@ const FoodItem = ({ item }: FoodItemProps) => {
               <span className="text-sm">({rating})</span>
             </div>
 
-            <Button
-              variant="outline"
-              size="sm"
-              className="text-sm font-light rounded-md"
-              onClick={() => addToCart(item)}
-            >
-              Add
-            </Button>
+            <AddFoodItemForm item={item} />
           </div>
         </div>
       </div>

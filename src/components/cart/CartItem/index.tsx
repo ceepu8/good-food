@@ -1,7 +1,7 @@
 import { BiMinus } from "react-icons/bi";
 import { BsPlus } from "react-icons/bs";
 import { useCart } from "../../../providers/CartProvider";
-import { CartItemInterface } from "../../../types";
+import { CartItemInterface, FoodItemInterface } from "../../../types";
 import { formatAsDollar } from "../../../utils";
 import { Button } from "../../base/Button";
 
@@ -9,12 +9,12 @@ const CartItem = ({ item }: { item: CartItemInterface }) => {
   const { price, id, label, quantity } = item || {};
   const { dispatch } = useCart();
 
-  const addToCart = (item: any) => {
-    dispatch({ type: "ADD_TO_CART", payload: item });
+  const addToCart = (item: FoodItemInterface) => {
+    dispatch({ type: "ADD_TO_CART", payload: {item} });
   };
 
-  const decreaseCartItem = (item: any) => {
-    dispatch({ type: "DECREASE_ITEM_QUANTITY", payload: item });
+  const decreaseCartItem = (item: FoodItemInterface) => {
+    dispatch({ type: "DECREASE_ITEM_QUANTITY", payload: {item} });
   };
 
   return (
