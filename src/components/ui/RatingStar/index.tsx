@@ -7,28 +7,32 @@ type RatingStarProps = {
 
 const RatingStar = memo(({ number: _number }: RatingStarProps) => {
   const number = Math.min(5, Math.max(0, _number));
+  let keyCounter = 0;
 
   const integerPart = Math.floor(number);
 
   const stars = [];
 
   for (let i = 0; i < integerPart; i++) {
-    stars.push(<BsStarFill className="text-yellow-500" />);
+    stars.push(<BsStarFill key={keyCounter++} className="text-yellow-500" />);
   }
 
   const decimalPart = number - integerPart;
 
   if (decimalPart > 0) {
     if (decimalPart > 0.25) {
-      stars.push(<BsStarHalf className="text-yellow-500" />);
+      stars.push(<BsStarHalf key={keyCounter++} className="text-yellow-500" />);
     } else {
-      stars.push(<BsStarFill className="text-yellow-500" />);
+      stars.push(<BsStarFill key={keyCounter++} className="text-yellow-500" />);
     }
   }
 
   for (let i = stars.length; i < 5; i++) {
     stars.push(
-      <BsStarFill className="fill-white stroke-1 stroke-yellow-500" />
+      <BsStarFill
+        key={keyCounter++}
+        className="fill-white stroke-1 stroke-yellow-500"
+      />
     );
   }
   return <div className="flex space-x-1">{stars}</div>;
