@@ -64,6 +64,7 @@ const CartModal = ({ show, handleClose }: CartModalProps) => {
       handleClose={handleClose}
       onOk={onOrder}
       disabled={!cartItems?.length}
+      title="Shopping Cart"
     >
       <CartModalContent />
     </Modal>

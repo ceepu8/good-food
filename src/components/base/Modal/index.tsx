@@ -3,6 +3,7 @@ import { cn } from "../../../utils";
 import { useOnClickOutside } from "../../../hooks/shared/useClickOutside";
 import { Button } from "../Button";
 import useLockBodyScroll from "../../../hooks/shared/useLockBodyScroll";
+import Heading from "../Heading";
 
 type ModalProps = {
   handleClose: () => void;
@@ -11,6 +12,7 @@ type ModalProps = {
   className?: string;
   onOk?: () => void;
   disabled?: boolean | undefined;
+  title?: string
 };
 
 export const ModalTrigger = ({ children }: { children: React.ReactNode }) => {
@@ -22,8 +24,10 @@ const Modal = ({
   show,
   children,
   className,
-  onOk,
+  onOk = () => {},
   disabled = false,
+  title = "",
+  ...props
 }: ModalProps) => {
   const ref = useRef(null);
   useOnClickOutside<HTMLDivElement>(ref, handleClose);
@@ -31,7 +35,7 @@ const Modal = ({
 
   const rootClassName = cn(
     "fixed h-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all",
-    "bg-white w-full xs:w-[80%] xs:max-w-[720px]",
+    "bg-white w-full max-h-[80%] overflow-auto xs:w-[80%] xs:max-w-[720px]",
     "flex flex-col p-6 xs:rounded-lg",
     show ? "visible opacity-100" : "invisible opacity-0",
     className
@@ -44,8 +48,8 @@ const Modal = ({
   return (
     <div className={overlayClassName}>
       <section ref={ref} className={rootClassName}>
+        <Heading size="2xl" className="text-center shrink-0">{title}</Heading>
         <div className="flex-1">{children}</div>
-
         <div className="flex space-x-4">
           <Button variant="ghost" onClick={handleClose} className="ml-auto">
             Close

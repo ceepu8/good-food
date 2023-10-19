@@ -30,7 +30,7 @@ const FoodMenuListing = () => {
 const FoodMenu = () => {
   return (
     <section>
-      <div className="container mx-auto space-y-4">
+      <div className="container mx-auto space-y-4 pb-8">
         <FoodMenuHeader />
         <FoodMenuListing />
       </div>

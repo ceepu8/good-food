@@ -6,7 +6,8 @@ const MainLayout = () => {
   return (
     <>
       <Header />
-      <main>
+      {/* full screen minus footer */}
+      <main className="min-h-[calc(100vh-287px)]">
         <Outlet />
       </main>
       <Footer />
