@@ -1,6 +1,5 @@
-import Heading from "../../../components/base/Heading";
-import FilterFoodBar from "../../../components/food/FilterFoodBar";
-import FoodItem from "../../../components/food/FoodItem";
+import Heading from "../../base/Heading";
+import FoodItem from "../FoodItem";
 import FOOD_LIST from "../../../services/food-list.json";
 
 const FoodMenuHeader = () => {
@@ -31,9 +30,8 @@ const FoodMenuListing = () => {
 const FoodMenu = () => {
   return (
     <section>
-      <div className="container mx-auto">
+      <div className="container mx-auto space-y-4">
         <FoodMenuHeader />
-        <FilterFoodBar />
         <FoodMenuListing />
       </div>
     </section>

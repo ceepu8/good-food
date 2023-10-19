@@ -6,23 +6,16 @@ import {
   Dispatch,
 } from "react";
 import { addToCart, decreaseCartItem } from "../../utils/cart";
-
-type CartItem = {
-  id: number;
-  label: string;
-  price: number;
-  rating: number;
-  quantity: number;
-};
+import { CartItemInterface } from "../../types";
 
 type CartState = {
-  cartItems: CartItem[];
+  cartItems: CartItemInterface[];
 };
 
 type CartAction =
-  | { type: "ADD_TO_CART"; payload: CartItem }
-  | { type: "REMOVE_FROM_CART"; payload: CartItem }
-  | { type: "DECREASE_ITEM_QUANTITY"; payload: CartItem }
+  | { type: "ADD_TO_CART"; payload: CartItemInterface }
+  | { type: "REMOVE_FROM_CART"; payload: CartItemInterface }
+  | { type: "DECREASE_ITEM_QUANTITY"; payload: CartItemInterface }
   | { type: "CLEAR_CART" };
 
 const CartContext = createContext<

@@ -1,41 +1,41 @@
 [
     {
-        "id": 1,
+        "id": "1",
         "image": "./images/meal-1.jpeg",
         "label": "Maxican Pizza",
         "price": 29,
         "rating": 3.7
     },
     {
-        "id": 2,
+        "id": "2",
         "image": "./images/meal-2.jpeg",
         "label": "Maxican Pizza Test Better",
         "price": 29,
         "rating": 4.2
     },
     {
-        "id": 3,
+        "id": "3",
         "image": "./images/meal-3.jpeg",
         "label": "Maxican Pizza",
         "price": 29,
         "rating": 4.5
     },
     {
-        "id": 4,
+        "id": "4",
         "image": "./images/meal-4.jpeg",
         "label": "Maxican Pizza",
         "price": 29,
         "rating": 4.5
     },
     {
-        "id": 5,
+        "id": "5",
         "image": "./images/meal-5.jpeg",
         "label": "Maxican Pizza",
         "price": 29,
         "rating": 5
     },
     {
-        "id": 6,
+        "id": "6",
         "image": "./images/meal-6.jpeg",
         "label": "Maxican Pizza",
         "price": 29,

@@ -7,7 +7,7 @@ import { Routes } from "../../../../constants";
 import { Button } from "../../../base/Button";
 import Link from "../../../base/Link";
 import Logo from "../../Logo";
-import CartModalToggle from "./CartModalToggle";
+import CartModalToggle from "../../../cart/CartModalToggle";
 
 type NavigationItemProps = {
   item: {

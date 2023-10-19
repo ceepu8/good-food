@@ -1,49 +1,53 @@
-type CartItem = {
-  id: number;
-  label: string;
-  price: number;
-  rating: number;
-  quantity: number;
-};
+import { CartItemInterface } from "../types";
 
-export const addToCart = (cartItems: CartItem[], newItem: CartItem) => {
-  let newCart = [];
-  const foundItem = cartItems.find((item) => item.id === newItem.id);
+const findCartItem = (cartItems: CartItemInterface[], id: string) =>
+  cartItems.find((item) => item.id === id);
+
+const updateCartItemQuantity = (
+  cartItems: CartItemInterface[],
+  id: string,
+  quantity: number
+) => cartItems.map((item) => (item.id === id ? { ...item, quantity } : item));
+
+export const addToCart = (
+  cartItems: CartItemInterface[],
+  newItem: CartItemInterface
+) => {
+  const foundItem = findCartItem(cartItems, newItem.id);
 
   if (foundItem) {
-    newCart = cartItems.map((item) => {
-      if (item.id === newItem.id) {
-        return { ...item, quantity: (item.quantity += 1) };
-      }
-
-      return item;
-    });
+    const updatedCart = updateCartItemQuantity(
+      cartItems,
+      newItem.id,
+      foundItem.quantity + 1
+    );
+    return updatedCart;
   } else {
-    newCart = [...cartItems, { ...newItem, quantity: 1 }];
+    const newCart = [...cartItems, { ...newItem, quantity: 1 }];
+    return newCart;
   }
-
-  return newCart;
 };
 
-export const decreaseCartItem = (cartItems: CartItem[], newItem: CartItem) => {
-  let newCart = [];
-  const foundItem = cartItems.find((item) => item.id === newItem.id);
+export const decreaseCartItem = (
+  cartItems: CartItemInterface[],
+  cartItem: CartItemInterface
+) => {
+  const foundItem = findCartItem(cartItems, cartItem.id);
 
   if (foundItem) {
     if (foundItem.quantity === 1) {
-      newCart = cartItems.filter((item: any) => item.id !== newItem.id);
+      const updatedCart = cartItems.filter((item) => item.id !== cartItem.id);
+      return updatedCart;
     } else {
-      newCart = cartItems.map((item) => {
-        if (item.id === newItem.id) {
-          return { ...item, quantity: (item.quantity -= 1) };
-        }
-
-        return item;
-      });
+      const updatedCart = updateCartItemQuantity(
+        cartItems,
+        cartItem.id,
+        foundItem.quantity - 1
+      );
+      return updatedCart;
     }
   } else {
-    newCart = [...cartItems, { ...newItem, quantity: 1 }];
+    const newCart = [...cartItems, { ...cartItem, quantity: 1 }];
+    return newCart;
   }
-
-  return newCart;
 };

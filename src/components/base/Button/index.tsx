@@ -35,7 +35,15 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { className, variant, size, children, fullWidth = false, ...props },
+    {
+      className,
+      variant,
+      size,
+      children,
+      fullWidth = false,
+      disabled = false,
+      ...props
+    },
     ref
   ) => {
     return (
@@ -44,6 +52,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           "w-full": fullWidth,
         })}
         ref={ref}
+        disabled={disabled}
         {...props}
       >
         {children}

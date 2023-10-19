@@ -1,4 +1,5 @@
 import { useCart } from "../../../providers/CartProvider";
+import { FoodItemInterface } from "../../../types";
 import { formatAsDollar } from "../../../utils";
 import { Button } from "../../base/Button";
 import Image from "../../base/Image";
@@ -6,12 +7,7 @@ import Link from "../../base/Link";
 import RatingStar from "../../ui/RatingStar";
 
 type FoodItemProps = {
-  item: {
-    label: string;
-    price: number;
-    image: string;
-    rating: number;
-  };
+  item: FoodItemInterface;
 };
 
 const FoodItem = ({ item }: FoodItemProps) => {

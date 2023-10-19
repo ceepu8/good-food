@@ -10,6 +10,7 @@ type ModalProps = {
   children: React.ReactNode;
   className?: string;
   onOk?: () => void;
+  disabled?: boolean | undefined;
 };
 
 export const ModalTrigger = ({ children }: { children: React.ReactNode }) => {
@@ -22,6 +23,7 @@ const Modal = ({
   children,
   className,
   onOk,
+  disabled = false,
 }: ModalProps) => {
   const ref = useRef(null);
   useOnClickOutside<HTMLDivElement>(ref, handleClose);
@@ -48,7 +50,7 @@ const Modal = ({
           <Button variant="ghost" onClick={handleClose} className="ml-auto">
             Close
           </Button>
-          <Button onClick={onOk} className="ml-auto">
+          <Button onClick={onOk} className="ml-auto" disabled={disabled}>
             Ok
           </Button>
         </div>
