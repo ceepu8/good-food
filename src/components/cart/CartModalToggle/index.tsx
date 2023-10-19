@@ -20,16 +20,36 @@ const CartNumber = () => {
   );
 };
 
+type CartToggleProps = {
+  onClick: () => void;
+  toggled: boolean;
+};
+
+const CartToggle = ({ onClick, toggled }: CartToggleProps) => {
+  return (
+    <Button
+      onClick={onClick}
+      variant="primary"
+      className={cn("uppercase group flex", {
+        "animation-heartbeat": toggled,
+      })}
+    >
+      <CartNumber />
+      <span className="hidden sm:block">Shopping Cart</span>
+    </Button>
+  );
+};
+
 const CartModalToggle = () => {
   const [open, setOpen] = useState(false);
   const [toggled, setToggled] = useState(false);
   const { state } = useCart();
 
-
+  const openModal = () => setOpen(true);
+  const closeModal = () => setOpen(false);
 
   useEffect(() => {
     setToggled(true);
-
     let timeout = setTimeout(() => {
       setToggled(false);
     }, 500);
@@ -39,18 +59,8 @@ const CartModalToggle = () => {
 
   return (
     <div className="flex items-center gap-x-2">
-      <Button
-        onClick={() => setOpen(true)}
-        variant="primary"
-        className={cn("uppercase group flex", {
-          "animation-heartbeat": toggled,
-        })}
-      >
-        <CartNumber />
-        <span className="hidden sm:block">Shopping Cart</span>
-      </Button>
-
-      <CartModal show={open} handleClose={() => setOpen(false)} />
+      <CartToggle onClick={openModal} toggled={toggled} />
+      <CartModal show={open} handleClose={closeModal} />
     </div>
   );
 };

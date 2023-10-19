@@ -62,8 +62,41 @@ const AddFoodItemForm = ({ item }: { item: FoodItemInterface }) => {
   );
 };
 
+const FoodItemImage = ({ image }: { image: string }) => {
+  return (
+    <figure className="aspect-[1.5/1] overflow-hidden">
+      <Image
+        src={image}
+        alt="gallery"
+        className="xs:rounded-t-lg group-hover:scale-110 transition-[transform] object-cover w-full h-full"
+      />
+    </figure>
+  );
+};
+
+const FoodItemCardContent = ({ item }: FoodItemProps) => {
+  const { label, price, rating } = item || {};
+  return (
+    <div className="font-montserrat">
+      <div className="flex justify-between px-2">
+        <h5 className="font-semibold text-[15px]">{label}</h5>
+        <h4 className="text-yellow-400 text-[22px] font-bold">
+          {formatAsDollar(price)}
+        </h4>
+      </div>
+      <div className="flex items-center mt-2 cm-order justify-between px-2">
+        <div className="flex items-center space-x-2">
+          <RatingStar number={rating} />
+          <span className="text-sm">({rating})</span>
+        </div>
+        <AddFoodItemForm item={item} />
+      </div>
+    </div>
+  );
+};
+
 const FoodItem = ({ item }: FoodItemProps) => {
-  const { label, image, rating, price } = item || {};
+  const { image } = item || {};
 
   return (
     <Link to="/" disabled>
@@ -71,30 +104,8 @@ const FoodItem = ({ item }: FoodItemProps) => {
         style={{ boxShadow: "0 1px 22px 0 rgb(0 0 0 / 9%)" }}
         className="bg-white pb-4 flex flex-col gap-y-4 xs:rounded-lg cursor-pointer group"
       >
-        <figure className="aspect-[1.5/1] overflow-hidden">
-          <Image
-            src={image}
-            alt="gallery"
-            className="xs:rounded-t-lg group-hover:scale-110 transition-[transform] object-cover w-full h-full"
-          />
-        </figure>
-
-        <div className="font-montserrat">
-          <div className="flex justify-between px-2">
-            <h5 className="font-semibold text-[15px]"> {label}</h5>
-            <h4 className="text-yellow-400 text-[22px] font-bold">
-              {formatAsDollar(price)}
-            </h4>
-          </div>
-          <div className="flex items-center mt-2 cm-order justify-between px-2">
-            <div className="flex items-center space-x-2">
-              <RatingStar number={rating} />
-              <span className="text-sm">({rating})</span>
-            </div>
-
-            <AddFoodItemForm item={item} />
-          </div>
-        </div>
+        <FoodItemImage image={image} />
+        <FoodItemCardContent item={item} />
       </div>
     </Link>
   );

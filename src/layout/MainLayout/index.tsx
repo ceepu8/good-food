@@ -7,7 +7,7 @@ const MainLayout = () => {
     <>
       <Header />
       {/* full screen minus footer */}
-      <main className="min-h-[calc(100vh-287px)]">
+      <main className="min-h-screen]">
         <Outlet />
       </main>
       <Footer />
